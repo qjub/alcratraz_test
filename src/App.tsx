@@ -20,7 +20,7 @@ import {
 import { AnimatePresence, motion } from "motion/react";
 import { MENU_ITEMS } from "./constants";
 import { CartItem, ComboInfo, ComboItem, MenuItem } from "./types";
-import { cn } from "./utils";
+import { cn } from "./lib/utils";
 
 const COMBO_PONUKY = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQer8aeMT5jYlxJ5GemQjl6C0oo7Noedqe0pC41a6FqobbXmc7wzckVddCMs6rOrTjamqa9O0Y0TVc3/pub?gid=0&single=true&output=csv";
 const COMBO_INFO = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQer8aeMT5jYlxJ5GemQjl6C0oo7Noedqe0pC41a6FqobbXmc7wzckVddCMs6rOrTjamqa9O0Y0TVc3/pub?gid=117799646&single=true&output=csv";
