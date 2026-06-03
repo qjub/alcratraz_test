@@ -438,7 +438,7 @@ export default function App() {
       .join("\n");
 
     const msg = `${t.waGreeting}\n\n${t.formLabels.name}: ${form.name}\n${t.formLabels.phone}: ${form.phone}\n${t.formLabels.address}: ${form.address || t.formLabels.pickup}\n${t.formLabels.note}: ${form.note}\n\n${itemsText}\n\n${t.formLabels.total}: ${cartTotal.toFixed(2)}€`;
-    window.open(`https://wa.me/421902669123?text=${encodeURIComponent(msg)}`, "_blank");
+    window.open(`https://wa.me/421908819197?text=${encodeURIComponent(msg)}`, "_blank");
   };
 
   const handleOrderEmail = async () => {
