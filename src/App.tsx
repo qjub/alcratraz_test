@@ -633,26 +633,25 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      <header className="relative overflow-hidden pt-24 pb-12 sm:pt-32 sm:pb-16 lg:min-h-screen lg:pt-36">
-        <div className="absolute inset-0 -z-10 overflow-hidden bg-brand-bg">
-  <img
-    src={`${import.meta.env.BASE_URL}hero_pozadie.webp`}
-    alt="Burger Alcatraz"
-    className="absolute inset-0 h-full w-full object-cover object-[68%_center] opacity-75"
-  />
+      <header className="relative isolate overflow-hidden pt-24 pb-12 sm:pt-32 sm:pb-16 lg:min-h-screen lg:pt-36">
+        <div className="absolute inset-0 z-0 overflow-hidden bg-brand-bg" aria-hidden="true">
+          <img
+            src={`${import.meta.env.BASE_URL}hero_pozadie.webp`}
+            alt=""
+            className="absolute inset-0 h-full w-full object-cover object-[70%_center] opacity-80"
+          />
 
-  <img
-    src={`${import.meta.env.BASE_URL}logo.png`}
-    alt=""
-    aria-hidden="true"
-    className="pointer-events-none absolute right-[6vw] top-1/2 hidden w-[26rem] -translate-y-1/2 opacity-[0.12] lg:block xl:w-[34rem]"
-  />
+          <img
+            src={`${import.meta.env.BASE_URL}logo.png`}
+            alt=""
+            className="pointer-events-none absolute right-[6vw] top-1/2 hidden w-[28rem] -translate-y-1/2 opacity-20 lg:block xl:w-[36rem]"
+          />
 
-  <div className="absolute inset-0 bg-gradient-to-r from-brand-bg via-brand-bg/75 to-brand-bg/35" />
-  <div className="absolute inset-0 bg-gradient-to-b from-brand-bg/20 via-transparent to-brand-bg" />
-</div>
+          <div className="absolute inset-0 bg-gradient-to-r from-brand-bg via-brand-bg/70 to-brand-bg/25" />
+          <div className="absolute inset-0 bg-gradient-to-b from-brand-bg/25 via-transparent to-brand-bg" />
+        </div>
 
-        <div className="container flex min-h-[calc(100svh-8.5rem)] items-center pb-4 sm:min-h-[calc(92svh-8rem)] lg:grid lg:grid-cols-[1.05fr_0.95fr] lg:pb-20">
+        <div className="container relative z-10 flex min-h-[calc(100svh-8.5rem)] items-center pb-4 sm:min-h-[calc(92svh-8rem)] lg:grid lg:grid-cols-[1.05fr_0.95fr] lg:pb-20">
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
