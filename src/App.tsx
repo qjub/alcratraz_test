@@ -634,22 +634,23 @@ export default function App() {
       </AnimatePresence>
 
       <header className="relative overflow-hidden pt-24 pb-12 sm:pt-32 sm:pb-16 lg:min-h-screen lg:pt-36">
-        <div className="absolute inset-0 -z-10 overflow-hidden">
-          <img
-            src={`${import.meta.env.BASE_URL}hero_pozadie.webp`}
-            alt="Burger Alcatraz"
-            className="absolute inset-0 h-full w-full object-cover object-[68%_center] opacity-45 sm:opacity-55"
-          />
+        <div className="absolute inset-0 -z-10 overflow-hidden bg-brand-bg">
+  <img
+    src={`${import.meta.env.BASE_URL}hero_pozadie.webp`}
+    alt="Burger Alcatraz"
+    className="absolute inset-0 h-full w-full object-cover object-[68%_center] opacity-75"
+  />
 
-          <img
-            src={`${import.meta.env.BASE_URL}logo.png`}
-            alt=""
-            aria-hidden="true"
-            className="pointer-events-none absolute right-[7vw] top-1/2 hidden w-[26rem] -translate-y-1/2 opacity-[0.09] blur-[0.2px] lg:block xl:w-[34rem]"
-          />
+  <img
+    src={`${import.meta.env.BASE_URL}logo.png`}
+    alt=""
+    aria-hidden="true"
+    className="pointer-events-none absolute right-[6vw] top-1/2 hidden w-[26rem] -translate-y-1/2 opacity-[0.12] lg:block xl:w-[34rem]"
+  />
 
-          <div className="hero-overlay absolute inset-0 bg-[radial-gradient(circle_at_72%_45%,rgba(178,201,193,0.18),transparent_34%),linear-gradient(90deg,rgba(26,26,26,0.98),rgba(26,26,26,0.82)_42%,rgba(26,26,26,0.48)),linear-gradient(180deg,rgba(26,26,26,0.35),#1a1a1a_96%)]" />
-        </div>
+  <div className="absolute inset-0 bg-gradient-to-r from-brand-bg via-brand-bg/75 to-brand-bg/35" />
+  <div className="absolute inset-0 bg-gradient-to-b from-brand-bg/20 via-transparent to-brand-bg" />
+</div>
 
         <div className="container flex min-h-[calc(100svh-8.5rem)] items-center pb-4 sm:min-h-[calc(92svh-8rem)] lg:grid lg:grid-cols-[1.05fr_0.95fr] lg:pb-20">
           <motion.div
