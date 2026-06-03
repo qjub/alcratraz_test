@@ -438,7 +438,7 @@ export default function App() {
       .join("\n");
 
     const msg = `${t.waGreeting}\n\n${t.formLabels.name}: ${form.name}\n${t.formLabels.phone}: ${form.phone}\n${t.formLabels.address}: ${form.address || t.formLabels.pickup}\n${t.formLabels.note}: ${form.note}\n\n${itemsText}\n\n${t.formLabels.total}: ${cartTotal.toFixed(2)}€`;
-    window.open(`https://wa.me/421908819197?text=${encodeURIComponent(msg)}`, "_blank");
+    window.open(`https://wa.me/421902669123?text=${encodeURIComponent(msg)}`, "_blank");
   };
 
   const handleOrderEmail = async () => {
@@ -498,22 +498,22 @@ export default function App() {
         <div className="container flex h-16 items-center justify-between gap-3 sm:h-20">
           <a href="#" className="flex items-center gap-3 shrink-0" aria-label="Alcatraz domov">
             <img src={`${import.meta.env.BASE_URL}logo.png`} alt="Alcatraz Pizza and Burgers" className="h-11 w-auto sm:h-14" />
-            <span className="hidden font-display text-3xl tracking-wider text-white sm:block">ALCATRAZ</span>
+            <span className="hidden whitespace-nowrap font-display text-3xl tracking-wider text-white sm:block">ALCATRAZ</span>
           </a>
 
-          <div className="hidden items-center gap-7 md:flex">
+          <div className="hidden min-w-0 items-center gap-4 lg:gap-5 xl:gap-7 md:flex">
             {navItems.map((item) => (
               <a
                 key={item.id}
                 href={`#${item.id}`}
-                className="text-xs font-bold uppercase tracking-[0.18em] text-brand-text-muted transition-colors hover:text-brand-accent"
+                className="whitespace-nowrap text-[11px] font-bold uppercase tracking-[0.16em] text-brand-text-muted transition-colors hover:text-brand-accent xl:text-xs xl:tracking-[0.18em]"
               >
                 {item.label[lang]}
               </a>
             ))}
           </div>
 
-          <div className="flex items-center gap-2 sm:gap-3">
+          <div className="flex shrink-0 items-center gap-2 sm:gap-3">
             <div className="flex items-center rounded-xl border border-white/10 bg-white/5 p-1 text-[11px] font-black uppercase tracking-[0.08em] sm:rounded-2xl" aria-label={t.langLabel}>
               <button
                 type="button"
@@ -570,7 +570,7 @@ export default function App() {
 
             <a
               href="tel:+421902669123"
-              className="hidden items-center gap-2 rounded-2xl bg-brand-accent px-5 py-3 text-sm font-black text-brand-bg transition-colors hover:bg-brand-accent-hover lg:flex"
+              className="hidden min-w-max items-center gap-2 whitespace-nowrap rounded-2xl bg-brand-accent px-5 py-3 text-sm font-black leading-none text-brand-bg transition-colors hover:bg-brand-accent-hover lg:flex"
             >
               <Phone className="h-4 w-4" />
               0902 669 123
