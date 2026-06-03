@@ -8,12 +8,14 @@ import {
   Mail,
   MapPin,
   Menu as MenuIcon,
+  Moon,
   Minus,
   Phone,
   Plus,
   Send,
   ShoppingCart,
   Star,
+  Sun,
   UtensilsCrossed,
   X,
 } from "lucide-react";
@@ -36,6 +38,7 @@ type OrderItemInput = MenuItem | {
 };
 
 type Lang = "sk" | "en";
+type ThemeMode = "dark" | "light";
 
 const navItems = [
   { id: "obedové-menu", label: { sk: "Obedové menu", en: "Lunch menu" } },
@@ -50,6 +53,9 @@ const categoryIds: MenuItem["category"][] = ["burgers", "pizza", "salads", "soup
 const translations = {
   sk: {
     langLabel: "Jazyk",
+    themeLabel: "Režim",
+    darkMode: "Tmavý",
+    lightMode: "Svetlý",
     cartOpen: "Otvoriť košík",
     callShort: "Zavolať",
     callPhone: "Zavolať 0902 669 123",
@@ -116,6 +122,9 @@ const translations = {
   },
   en: {
     langLabel: "Language",
+    themeLabel: "Theme",
+    darkMode: "Dark",
+    lightMode: "Light",
     cartOpen: "Open cart",
     callShort: "Call",
     callPhone: "Call 0902 669 123",
@@ -276,6 +285,11 @@ export default function App() {
     const savedLang = window.localStorage.getItem("alcatraz-lang");
     return savedLang === "en" ? "en" : "sk";
   });
+  const [theme, setTheme] = useState<ThemeMode>(() => {
+    if (typeof window === "undefined") return "dark";
+    const savedTheme = window.localStorage.getItem("alcatraz-theme");
+    return savedTheme === "light" ? "light" : "dark";
+  });
   const t = translations[lang];
 
   const [isScrolled, setIsScrolled] = useState(false);
@@ -298,6 +312,12 @@ export default function App() {
   useEffect(() => {
     window.localStorage.setItem("alcatraz-lang", lang);
   }, [lang]);
+
+  useEffect(() => {
+    window.localStorage.setItem("alcatraz-theme", theme);
+    document.documentElement.classList.toggle("theme-light", theme === "light");
+    document.documentElement.classList.toggle("theme-dark", theme === "dark");
+  }, [theme]);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
@@ -468,7 +488,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen overflow-x-hidden selection:bg-brand-accent selection:text-brand-bg">
+    <div className={cn("min-h-screen overflow-x-hidden selection:bg-brand-accent selection:text-brand-bg transition-colors duration-300", theme === "light" ? "theme-light" : "theme-dark")}>
       <nav
         className={cn(
           "fixed left-0 right-0 top-0 z-50 transition-all duration-300",
@@ -508,6 +528,29 @@ export default function App() {
                 className={cn("rounded-lg px-2.5 py-1.5 transition-colors", lang === "en" ? "bg-brand-accent text-brand-bg" : "text-brand-text-muted hover:text-white")}
               >
                 EN
+              </button>
+            </div>
+
+            <div className="flex items-center rounded-xl border border-white/10 bg-white/5 p-1 text-[11px] font-black uppercase tracking-[0.08em] sm:rounded-2xl" aria-label={t.themeLabel}>
+              <button
+                type="button"
+                onClick={() => setTheme("dark")}
+                className={cn("flex items-center gap-1 rounded-lg px-2.5 py-1.5 transition-colors", theme === "dark" ? "bg-brand-accent text-brand-bg" : "text-brand-text-muted hover:text-white")}
+                aria-label={t.darkMode}
+                title={t.darkMode}
+              >
+                <Moon className="h-3.5 w-3.5" />
+                <span className="hidden sm:inline">{t.darkMode}</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => setTheme("light")}
+                className={cn("flex items-center gap-1 rounded-lg px-2.5 py-1.5 transition-colors", theme === "light" ? "bg-brand-accent text-brand-bg" : "text-brand-text-muted hover:text-white")}
+                aria-label={t.lightMode}
+                title={t.lightMode}
+              >
+                <Sun className="h-3.5 w-3.5" />
+                <span className="hidden sm:inline">{t.lightMode}</span>
               </button>
             </div>
 
@@ -568,6 +611,16 @@ export default function App() {
                 <button type="button" onClick={() => setLang("sk")} className={cn("rounded-2xl px-4 py-3", lang === "sk" ? "bg-brand-accent text-brand-bg" : "text-brand-text-muted")}>SK</button>
                 <button type="button" onClick={() => setLang("en")} className={cn("rounded-2xl px-4 py-3", lang === "en" ? "bg-brand-accent text-brand-bg" : "text-brand-text-muted")}>EN</button>
               </div>
+              <div className="grid grid-cols-2 gap-2 rounded-3xl border border-white/10 bg-white/[0.03] p-2 text-sm font-black uppercase tracking-[0.12em]">
+                <button type="button" onClick={() => setTheme("dark")} className={cn("flex items-center justify-center gap-2 rounded-2xl px-4 py-3", theme === "dark" ? "bg-brand-accent text-brand-bg" : "text-brand-text-muted")}>
+                  <Moon className="h-4 w-4" />
+                  {t.darkMode}
+                </button>
+                <button type="button" onClick={() => setTheme("light")} className={cn("flex items-center justify-center gap-2 rounded-2xl px-4 py-3", theme === "light" ? "bg-brand-accent text-brand-bg" : "text-brand-text-muted")}>
+                  <Sun className="h-4 w-4" />
+                  {t.lightMode}
+                </button>
+              </div>
               <a
                 href="tel:+421902669123"
                 className="mt-3 flex items-center justify-center gap-3 rounded-3xl bg-brand-accent px-5 py-4 text-base font-black text-brand-bg"
@@ -583,7 +636,7 @@ export default function App() {
       <header className="relative overflow-hidden pt-24 pb-12 sm:pt-32 sm:pb-16 lg:min-h-screen lg:pt-36">
         <div className="absolute inset-0 -z-10">
           <img src="hero_pozadie.webp" alt="Burger Alcatraz" className="h-full w-full object-cover object-[62%_center] opacity-45 sm:opacity-55" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_45%,rgba(178,201,193,0.16),transparent_34%),linear-gradient(90deg,rgba(26,26,26,0.98),rgba(26,26,26,0.80)_42%,rgba(26,26,26,0.54)),linear-gradient(180deg,rgba(26,26,26,0.35),#1a1a1a_96%)]" />
+          <div className="hero-overlay absolute inset-0 bg-[radial-gradient(circle_at_70%_45%,rgba(178,201,193,0.16),transparent_34%),linear-gradient(90deg,rgba(26,26,26,0.98),rgba(26,26,26,0.80)_42%,rgba(26,26,26,0.54)),linear-gradient(180deg,rgba(26,26,26,0.35),#1a1a1a_96%)]" />
         </div>
 
         <div className="container flex min-h-[calc(100svh-8.5rem)] items-center pb-4 sm:min-h-[calc(92svh-8rem)] lg:grid lg:grid-cols-[1.05fr_0.95fr] lg:pb-20">
