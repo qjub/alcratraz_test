@@ -8,7 +8,7 @@ export default defineConfig(({ mode }) => {
 
   return {
     plugins: [react(), tailwindcss()],
-    base: '/alcatraz_test/',
+    base: '/alcratraz_test/',
     build: {
       target: 'es2020',
     },
