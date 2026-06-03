@@ -438,7 +438,7 @@ export default function App() {
       .join("\n");
 
     const msg = `${t.waGreeting}\n\n${t.formLabels.name}: ${form.name}\n${t.formLabels.phone}: ${form.phone}\n${t.formLabels.address}: ${form.address || t.formLabels.pickup}\n${t.formLabels.note}: ${form.note}\n\n${itemsText}\n\n${t.formLabels.total}: ${cartTotal.toFixed(2)}€`;
-    window.open(`https://wa.me/421908819197?text=${encodeURIComponent(msg)}`, "_blank");
+    window.open(`https://wa.me/421902669123?text=${encodeURIComponent(msg)}`, "_blank");
   };
 
   const handleOrderEmail = async () => {
@@ -497,7 +497,7 @@ export default function App() {
       >
         <div className="container flex h-16 items-center justify-between gap-3 sm:h-20">
           <a href="#" className="flex items-center gap-3 shrink-0" aria-label="Alcatraz domov">
-            <img src="logo.png" alt="Alcatraz Pizza and Burgers" className="h-11 w-auto sm:h-14" />
+            <img src={`${import.meta.env.BASE_URL}logo.png`} alt="Alcatraz Pizza and Burgers" className="h-11 w-auto sm:h-14" />
             <span className="hidden font-display text-3xl tracking-wider text-white sm:block">ALCATRAZ</span>
           </a>
 
@@ -634,9 +634,21 @@ export default function App() {
       </AnimatePresence>
 
       <header className="relative overflow-hidden pt-24 pb-12 sm:pt-32 sm:pb-16 lg:min-h-screen lg:pt-36">
-        <div className="absolute inset-0 -z-10">
-          <img src="hero_pozadie.webp" alt="Burger Alcatraz" className="h-full w-full object-cover object-[62%_center] opacity-45 sm:opacity-55" />
-          <div className="hero-overlay absolute inset-0 bg-[radial-gradient(circle_at_70%_45%,rgba(178,201,193,0.16),transparent_34%),linear-gradient(90deg,rgba(26,26,26,0.98),rgba(26,26,26,0.80)_42%,rgba(26,26,26,0.54)),linear-gradient(180deg,rgba(26,26,26,0.35),#1a1a1a_96%)]" />
+        <div className="absolute inset-0 -z-10 overflow-hidden">
+          <img
+            src={`${import.meta.env.BASE_URL}hero_pozadie.webp`}
+            alt="Burger Alcatraz"
+            className="absolute inset-0 h-full w-full object-cover object-[68%_center] opacity-45 sm:opacity-55"
+          />
+
+          <img
+            src={`${import.meta.env.BASE_URL}logo.png`}
+            alt=""
+            aria-hidden="true"
+            className="pointer-events-none absolute right-[7vw] top-1/2 hidden w-[26rem] -translate-y-1/2 opacity-[0.09] blur-[0.2px] lg:block xl:w-[34rem]"
+          />
+
+          <div className="hero-overlay absolute inset-0 bg-[radial-gradient(circle_at_72%_45%,rgba(178,201,193,0.18),transparent_34%),linear-gradient(90deg,rgba(26,26,26,0.98),rgba(26,26,26,0.82)_42%,rgba(26,26,26,0.48)),linear-gradient(180deg,rgba(26,26,26,0.35),#1a1a1a_96%)]" />
         </div>
 
         <div className="container flex min-h-[calc(100svh-8.5rem)] items-center pb-4 sm:min-h-[calc(92svh-8rem)] lg:grid lg:grid-cols-[1.05fr_0.95fr] lg:pb-20">
@@ -697,9 +709,9 @@ export default function App() {
       <section className="section bg-brand-bg-lighter">
         <div className="container grid gap-5 md:grid-cols-3">
           {[
-            { ...t.featureCards[0], img: "burger.webp", cat: "burgers" },
-            { ...t.featureCards[1], img: "Pizza.webp", cat: "pizza" },
-            { ...t.featureCards[2], img: "Poké.webp", cat: "salads" },
+            { ...t.featureCards[0], img: `${import.meta.env.BASE_URL}burger.webp`, cat: "burgers" },
+            { ...t.featureCards[1], img: `${import.meta.env.BASE_URL}Pizza.webp`, cat: "pizza" },
+            { ...t.featureCards[2], img: `${import.meta.env.BASE_URL}Poké.webp`, cat: "salads" },
           ].map((item) => (
             <button
               key={item.title}
